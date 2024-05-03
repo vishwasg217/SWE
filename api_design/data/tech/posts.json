@@ -1,0 +1,88 @@
+[
+    {
+      "title": "The Future of AI",
+      "content": "AI technology is rapidly advancing and is expected to play a major role in various industries including healthcare, finance, and transportation.",
+      "published": true
+    },
+    {
+      "title": "5G Network Expansion",
+      "content": "The rollout of 5G networks worldwide promises faster and more reliable connectivity, enabling new applications and services.",
+      "published": true
+    },
+    {
+      "title": "Cybersecurity Trends",
+      "content": "Cybersecurity is becoming increasingly important as more devices are connected to the internet. Expect new trends in threat detection and prevention.",
+      "published": true
+    },
+    {
+      "title": "Blockchain and Its Uses",
+      "content": "Blockchain technology goes beyond cryptocurrencies, offering solutions for supply chain management, data verification, and more.",
+      "published": false
+    },
+    {
+      "title": "Cloud Computing Growth",
+      "content": "Cloud computing continues to grow, with more companies shifting to cloud-based infrastructure for scalability and cost savings.",
+      "published": true
+    },
+    {
+      "title": "Edge Computing",
+      "content": "Edge computing brings data processing closer to the source, improving response times and reducing bandwidth usage.",
+      "published": false
+    },
+    {
+      "title": "Quantum Computing",
+      "content": "Quantum computing is a new paradigm that promises to revolutionize industries with unprecedented processing power.",
+      "published": false
+    },
+    {
+      "title": "Internet of Things (IoT)",
+      "content": "IoT is transforming industries by enabling smart devices and automation across sectors such as agriculture, manufacturing, and home automation.",
+      "published": true
+    },
+    {
+      "title": "Augmented Reality (AR)",
+      "content": "AR technology is being adopted in various fields including gaming, education, and healthcare, offering immersive experiences.",
+      "published": true
+    },
+    {
+      "title": "5 Tech Startups to Watch",
+      "content": "These emerging tech startups are making waves in AI, healthcare, and fintech with innovative solutions.",
+      "published": true
+    },
+    {
+      "title": "Virtual Reality (VR)",
+      "content": "VR technology continues to evolve, offering immersive experiences in gaming, training, and entertainment.",
+      "published": false
+    },
+    {
+      "title": "Green Tech Innovations",
+      "content": "Green tech aims to reduce environmental impact through innovations in renewable energy, recycling, and sustainable practices.",
+      "published": true
+    },
+    {
+      "title": "Machine Learning Applications",
+      "content": "Machine learning is being applied in areas such as natural language processing, image recognition, and recommendation systems.",
+      "published": true
+    },
+    {
+      "title": "Digital Twin Technology",
+      "content": "Digital twins enable real-time simulation and optimization in industries such as manufacturing and healthcare.",
+      "published": false
+    },
+    {
+      "title": "Smart Cities",
+      "content": "Smart city initiatives use technology to improve urban infrastructure and services, enhancing quality of life for residents.",
+      "published": true
+    },
+    {
+      "title": "Tech Ethics and Privacy",
+      "content": "As technology advances, ethical and privacy considerations are becoming increasingly important in tech development.",
+      "published": true
+    },
+    {
+      "title": "Robotic Process Automation",
+      "content": "RPA automates repetitive tasks, allowing companies to streamline processes and improve efficiency.",
+      "published": true
+    }
+  ]
+  

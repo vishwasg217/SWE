@@ -1,0 +1,32 @@
+[
+    {
+      "title": "Michael's Advice",
+      "content": "Sometimes, I'll start a sentence and I don't even know where it's going. I just hope I find it along the way.",
+      "published": true,
+      "author": "Michael Scott"
+    },
+    {
+      "title": "Phyllis' Confidence",
+      "content": "I don't care if Ryan wants to sign his name in poop across the room, you should let him.",
+      "published": true,
+      "author": "Phyllis Vance"
+    },
+    {
+      "title": "Dwight's Responsibility",
+      "content": "When I said that I wanted to breed, I did not mean in a petri dish, and I did not mean with a monkey.",
+      "published": true,
+      "author": "Dwight Schrute"
+    },
+    {
+      "title": "Kevin's Tip",
+      "content": "If you have seven cats, you have no cats.",
+      "published": true,
+      "author": "Kevin Malone"
+    },
+    {
+      "title": "Stanley's Real Talk",
+      "content": "The doctor said if I don't take a vacation, I'm going to die.",
+      "published": true,
+      "author": "Stanley Hudson"
+    }
+  ]

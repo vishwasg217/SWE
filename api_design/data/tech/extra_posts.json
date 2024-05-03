@@ -1,0 +1,28 @@
+[
+    {
+      "title": "Autonomous Vehicles",
+      "content": "Self-driving cars are being developed rapidly, with companies testing vehicles on public roads to perfect the technology.",
+      "published": false
+    },
+    {
+      "title": "Wearable Tech",
+      "content": "Wearable technology continues to evolve, offering smartwatches, fitness trackers, and other devices that monitor health and fitness metrics.",
+      "published": true
+    },
+    {
+      "title": "Digital Health Revolution",
+      "content": "Digital health technologies such as telemedicine and remote monitoring are transforming the healthcare industry, improving access and efficiency.",
+      "published": true
+    },
+    {
+      "title": "Gaming and Esports",
+      "content": "The gaming and esports industry is experiencing tremendous growth, with advancements in graphics, hardware, and online multiplayer platforms.",
+      "published": true
+    },
+    {
+      "title": "3D Printing Innovations",
+      "content": "3D printing technology is revolutionizing manufacturing, enabling rapid prototyping and production across various industries.",
+      "published": true
+    }
+]
+  
