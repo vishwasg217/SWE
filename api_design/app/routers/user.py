@@ -2,6 +2,7 @@ from ..database import engine, get_db
 from .. import models
 from ..utils import hash
 from ..schemas import UserCreate, UserResponse
+from ..oauth2 import get_current_user
 
 from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
 from typing import List
@@ -41,7 +42,7 @@ def create_user(body: UserCreate, db: Session = Depends(get_db)):
     return new_user
 
 @router.put("/{user_id}", response_model=UserResponse)
-def update_user(user_id: int, body: UserCreate, db: Session = Depends(get_db)):
+def update_user(user_id: int, body: UserCreate, db: Session = Depends(get_db), current_user: int = Depends(get_current_user)):
     user_query = db.query(models.User).filter(models.User.id == user_id)
     user = user_query.first()
 
@@ -57,7 +58,7 @@ def update_user(user_id: int, body: UserCreate, db: Session = Depends(get_db)):
     return user_query.first()
 
 @router.delete("/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_user(user_id: int, db: Session = Depends(get_db)):
+def delete_user(user_id: int, db: Session = Depends(get_db), current_user: int = Depends(get_current_user)):
     deleted_user = db.query(models.User).filter(models.User.id == user_id).delete()
     db.commit()
     if deleted_user:

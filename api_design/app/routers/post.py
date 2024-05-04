@@ -2,6 +2,7 @@ from ..database import engine, get_db
 from .. import models
 from ..utils import hash
 from ..schemas import PostCreate, PostResponse
+from ..oauth2 import get_current_user
 
 from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
 from typing import List
@@ -34,7 +35,7 @@ async def get_post(post_id: int, db: Session = Depends(get_db)):
     return post
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=PostResponse)
-async def create_post(body: PostCreate, db: Session = Depends(get_db)):
+async def create_post(body: PostCreate, db: Session = Depends(get_db), current_user: int = Depends(get_current_user)):
     
     new_post = models.Post(**body.model_dump())
     db.add(new_post)
@@ -44,7 +45,7 @@ async def create_post(body: PostCreate, db: Session = Depends(get_db)):
     return new_post
 
 @router.delete("/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_post(post_id: int, db: Session = Depends(get_db)):
+def delete_post(post_id: int, db: Session = Depends(get_db), current_user: int = Depends(get_current_user)):
     deleted_post = db.query(models.Post).filter(models.Post.id == post_id).delete()
     db.commit()
     if deleted_post:
@@ -56,7 +57,7 @@ def delete_post(post_id: int, db: Session = Depends(get_db)):
         )
     
 @router.put("/{post_id}", response_model=PostResponse)
-def update_post(post_id: int, body: PostCreate, db: Session = Depends(get_db)):
+def update_post(post_id: int, body: PostCreate, db: Session = Depends(get_db), current_user: int = Depends(get_current_user)):
     post_query = db.query(models.Post).filter(models.Post.id == post_id)
     post = post_query.first()
 
