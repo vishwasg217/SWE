@@ -9,17 +9,17 @@ from sqlalchemy.orm import Session
 
 
 router = APIRouter(
-    prefix="/posts",
-    tags=['Posts']
+    prefix="/users",
+    tags=["Users"]
 )
 
 
-@router.get("/users", response_model=List[UserResponse])
+@router.get("/", response_model=List[UserResponse])
 async def get_users(db: Session = Depends(get_db)):
     users = db.query(models.User).all()
     return users
 
-@router.get("/users/{user_id}", response_model=UserResponse)
+@router.get("/{user_id}", response_model=UserResponse)
 async def get_user(user_id: int, db: Session = Depends(get_db)):
     user = db.query(models.User).filter(models.User.id == user_id).first()
     if not user:
@@ -29,7 +29,7 @@ async def get_user(user_id: int, db: Session = Depends(get_db)):
         )
     return user
 
-@router.post("/users", status_code=status.HTTP_201_CREATED, response_model=UserResponse)
+@router.post("/", status_code=status.HTTP_201_CREATED, response_model=UserResponse)
 def create_user(payload: UserCreate, db: Session = Depends(get_db)):
     payload.password = hash(payload.password)
 
@@ -40,7 +40,7 @@ def create_user(payload: UserCreate, db: Session = Depends(get_db)):
 
     return new_user
 
-@router.put("/users/{user_id}", response_model=UserResponse)
+@router.put("/{user_id}", response_model=UserResponse)
 def update_user(user_id: int, payload: UserCreate, db: Session = Depends(get_db)):
     user_query = db.query(models.User).filter(models.User.id == user_id)
     user = user_query.first()
@@ -56,7 +56,7 @@ def update_user(user_id: int, payload: UserCreate, db: Session = Depends(get_db)
 
     return user_query.first()
 
-@router.delete("/users/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_user(user_id: int, db: Session = Depends(get_db)):
     deleted_user = db.query(models.User).filter(models.User.id == user_id).delete()
     db.commit()

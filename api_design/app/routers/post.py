@@ -11,25 +11,20 @@ models.Base.metadata.create_all(bind=engine)
 
 router = APIRouter(
     prefix="/posts",
-    tags=['Posts']
+    tags=["Posts"]
 )
 
-
-
-@router.get("/")
-async def root():
-    return {"message": "Hello World"}
 
 @router.get("/sqlalchemy")
 def test_posts(db: Session = Depends(get_db)):
     return {"status": "success"}
 
-@router.get("/posts", response_model=List[PostResponse])
+@router.get("/", response_model=List[PostResponse])
 async def get_posts(db: Session = Depends(get_db)):
     posts = db.query(models.Post).all()
     return posts
 
-@router.get("/posts/{post_id}", response_model=PostResponse)
+@router.get("/{post_id}", response_model=PostResponse)
 async def get_post(post_id: int, db: Session = Depends(get_db)):
     post = db.query(models.Post).filter(models.Post.id == post_id).first()
     if not post:
@@ -39,7 +34,7 @@ async def get_post(post_id: int, db: Session = Depends(get_db)):
         )
     return post
 
-@router.post("/posts", status_code=status.HTTP_201_CREATED, response_model=PostResponse)
+@router.post("/", status_code=status.HTTP_201_CREATED, response_model=PostResponse)
 async def create_post(payload: PostCreate, db: Session = Depends(get_db)):
     
     new_post = models.Post(**payload.model_dump())
@@ -49,7 +44,7 @@ async def create_post(payload: PostCreate, db: Session = Depends(get_db)):
 
     return new_post
 
-@router.delete("/posts/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_post(post_id: int, db: Session = Depends(get_db)):
     deleted_post = db.query(models.Post).filter(models.Post.id == post_id).delete()
     db.commit()
@@ -61,7 +56,7 @@ def delete_post(post_id: int, db: Session = Depends(get_db)):
             detail=f"Post with ID {post_id} not found."
         )
     
-@router.put("/posts/{post_id}", response_model=PostResponse)
+@router.put("/{post_id}", response_model=PostResponse)
 def update_post(post_id: int, payload: PostCreate, db: Session = Depends(get_db)):
     post_query = db.query(models.Post).filter(models.Post.id == post_id)
     post = post_query.first()
