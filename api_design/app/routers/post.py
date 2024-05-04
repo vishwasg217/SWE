@@ -7,7 +7,6 @@ from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
 from typing import List
 from sqlalchemy.orm import Session
 
-models.Base.metadata.create_all(bind=engine)
 
 router = APIRouter(
     prefix="/posts",

@@ -1,24 +1,18 @@
-from .database import engine, get_db
+from .database import engine
 from . import models
-from .utils import hash
-from .schemas import PostCreate, PostResponse, UserCreate, UserResponse
-from .routers import post, user
+from .routers import post, user, auth
 
-from fastapi import FastAPI, Response, status, HTTPException, Depends
-from typing import List
-from sqlalchemy.orm import Session
+from fastapi import FastAPI
 
 
 # creates new tables in the database if they don't exist
 models.Base.metadata.create_all(bind=engine)
 
-
-
-
 app = FastAPI()
 
 app.include_router(post.router)
 app.include_router(user.router)
+app.include_router(auth.router)
 
 @app.get("/")
 async def root():
