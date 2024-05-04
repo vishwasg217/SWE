@@ -30,10 +30,10 @@ async def get_user(user_id: int, db: Session = Depends(get_db)):
     return user
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=UserResponse)
-def create_user(payload: UserCreate, db: Session = Depends(get_db)):
-    payload.password = hash(payload.password)
+def create_user(body: UserCreate, db: Session = Depends(get_db)):
+    body.password = hash(body.password)
 
-    new_user = models.User(**payload.model_dump())
+    new_user = models.User(**body.model_dump())
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
@@ -41,7 +41,7 @@ def create_user(payload: UserCreate, db: Session = Depends(get_db)):
     return new_user
 
 @router.put("/{user_id}", response_model=UserResponse)
-def update_user(user_id: int, payload: UserCreate, db: Session = Depends(get_db)):
+def update_user(user_id: int, body: UserCreate, db: Session = Depends(get_db)):
     user_query = db.query(models.User).filter(models.User.id == user_id)
     user = user_query.first()
 
@@ -51,7 +51,7 @@ def update_user(user_id: int, payload: UserCreate, db: Session = Depends(get_db)
             detail=f"User with ID {user_id} not found."
         )    
     
-    user_query.update(payload.model_dump())
+    user_query.update(body.model_dump())
     db.commit()
 
     return user_query.first()
