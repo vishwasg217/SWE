@@ -1,0 +1,98 @@
+[
+    {
+        "email": "michael.scott@dundermifflin.com",
+        "password": "worldsbestboss",
+        "first_name": "Michael",
+        "last_name": "Scott"
+    },
+    {
+        "email": "jim.halpert@dundermifflin.com",
+        "password": "prankster1",
+        "first_name": "Jim",
+        "last_name": "Halpert"
+    },
+    {
+        "email": "pam.beesly@dundermifflin.com",
+        "password": "painter2",
+        "first_name": "Pam",
+        "last_name": "Beesly"
+    },
+    {
+        "email": "dwight.schrute@dundermifflin.com",
+        "password": "beetfarmer",
+        "first_name": "Dwight",
+        "last_name": "Schrute"
+    },
+    {
+        "email": "kelly.kapoor@dundermifflin.com",
+        "password": "gossipgirl",
+        "first_name": "Kelly",
+        "last_name": "Kapoor"
+    },
+    {
+        "email": "stanley.hudson@dundermifflin.com",
+        "password": "crossword",
+        "first_name": "Stanley",
+        "last_name": "Hudson"
+    },
+    {
+        "email": "kevin.malone@dundermifflin.com",
+        "password": "chili123",
+        "first_name": "Kevin",
+        "last_name": "Malone"
+    },
+    {
+        "email": "angela.martin@dundermifflin.com",
+        "password": "catsrule",
+        "first_name": "Angela",
+        "last_name": "Martin"
+    },
+    {
+        "email": "phyllis.vance@dundermifflin.com",
+        "password": "floral123",
+        "first_name": "Phyllis",
+        "last_name": "Vance"
+    },
+    {
+        "email": "toby.flenderson@dundermifflin.com",
+        "password": "quiet123",
+        "first_name": "Toby",
+        "last_name": "Flenderson"
+    },
+    {
+        "email": "ryan.howard@dundermifflin.com",
+        "password": "temp4life",
+        "first_name": "Ryan",
+        "last_name": "Howard"
+    },
+    {
+        "email": "meredith.palmer@dundermifflin.com",
+        "password": "partytime",
+        "first_name": "Meredith",
+        "last_name": "Palmer"
+    },
+    {
+        "email": "oscar.martinez@dundermifflin.com",
+        "password": "facts2024",
+        "first_name": "Oscar",
+        "last_name": "Martinez"
+    },
+    {
+        "email": "creed.brannon@dundermifflin.com",
+        "password": "mysteryman",
+        "first_name": "Creed",
+        "last_name": "Brannon"
+    },
+    {
+        "email": "andy.bernard@dundermifflin.com",
+        "password": "banjo2024",
+        "first_name": "Andy",
+        "last_name": "Bernard"
+    },
+    {
+        "email": "darryl.philbin@dundermifflin.com",
+        "password": "warehouse1",
+        "first_name": "Darryl",
+        "last_name": "Philbin"
+    }
+]

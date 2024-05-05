@@ -19,7 +19,10 @@ class PostResponse(Post):
 
 class User(BaseModel):
     email: EmailStr
+    first_name: str
+    last_name: str
     password: str
+    
 
 class UserCreate(User):
     pass
@@ -27,6 +30,8 @@ class UserCreate(User):
 class UserResponse(BaseModel):
     id: int
     email: EmailStr
+    first_name: str
+    last_name: str
     created_at: datetime
 
     class Config:
