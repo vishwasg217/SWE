@@ -1,0 +1,32 @@
+[
+    {
+        "email": "robert.california@dundermifflin.com",
+        "password": "thesearch",
+        "first_name": "Robert",
+        "last_name": "California"
+    },
+    {
+        "email": "nellie.bertram@dundermifflin.com",
+        "password": "florida1",
+        "first_name": "Nellie",
+        "last_name": "Bertram"
+    },
+    {
+        "email": "holly.flax@dundermifflin.com",
+        "password": "love2024",
+        "first_name": "Holly",
+        "last_name": "Flax"
+    },
+    {
+        "email": "erin.hannon@dundermifflin.com",
+        "password": "kindness",
+        "first_name": "Erin",
+        "last_name": "Hannon"
+    },
+    {
+        "email": "cathy.sims@dundermifflin.com",
+        "password": "temp123",
+        "first_name": "Cathy",
+        "last_name": "Sims"
+    }
+]

@@ -10,9 +10,13 @@ class Post(BaseModel):
 class PostCreate(Post):
     pass
 
-class PostResponse(Post):
+class PostResponse(BaseModel):
     id: int
+    title: str
+    content: str
+    published: bool
     created_at: datetime
+    author_id: int
 
     class Config:
         orm_mode = True

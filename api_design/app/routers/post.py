@@ -7,6 +7,7 @@ from ..oauth2 import get_current_user
 from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
 from typing import List
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 
 
 router = APIRouter(
@@ -21,12 +22,16 @@ def test_posts(db: Session = Depends(get_db)):
 
 @router.get("/", response_model=List[PostResponse])
 async def get_posts(db: Session = Depends(get_db)):
-    posts = db.query(models.Post).all()
+    post_query = db.query(models.Post)
+    posts = post_query.all()
     return posts
 
 @router.get("/{post_id}", response_model=PostResponse)
 async def get_post(post_id: int, db: Session = Depends(get_db)):
-    post = db.query(models.Post).filter(models.Post.id == post_id).first()
+    post_query = db.query(models.Post).filter(models.Post.id == post_id)
+    post = post_query.first()
+    print(post)
+
     if not post:
         raise HTTPException(
             status_code=404, 
@@ -36,8 +41,8 @@ async def get_post(post_id: int, db: Session = Depends(get_db)):
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=PostResponse)
 async def create_post(body: PostCreate, db: Session = Depends(get_db), current_user: int = Depends(get_current_user)):
-    
-    new_post = models.Post(**body.model_dump())
+    author_id = current_user.user_id
+    new_post = models.Post(author_id=author_id, **body.model_dump())
     db.add(new_post)
     db.commit()
     db.refresh(new_post)
@@ -46,16 +51,25 @@ async def create_post(body: PostCreate, db: Session = Depends(get_db), current_u
 
 @router.delete("/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_post(post_id: int, db: Session = Depends(get_db), current_user: int = Depends(get_current_user)):
-    deleted_post = db.query(models.Post).filter(models.Post.id == post_id).delete()
-    db.commit()
-    if deleted_post:
-        return Response(status_code=status.HTTP_204_NO_CONTENT)
-    else:
+    post_query = db.query(models.Post).filter(models.Post.id == post_id)
+    post = post_query.first()
+
+    if post == None:
         raise HTTPException(
-            status_code=404, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail=f"Post with ID {post_id} not found."
         )
+    if post.author_id != current_user.user_id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Not authorized to perform requested action"
+        )        
     
+    post_query.delete(synchronize_session=False)
+    db.commit()
+
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
+
 @router.put("/{post_id}", response_model=PostResponse)
 def update_post(post_id: int, body: PostCreate, db: Session = Depends(get_db), current_user: int = Depends(get_current_user)):
     post_query = db.query(models.Post).filter(models.Post.id == post_id)
@@ -63,9 +77,15 @@ def update_post(post_id: int, body: PostCreate, db: Session = Depends(get_db), c
 
     if not post:
         raise HTTPException(
-            status_code=404, 
+            status_code=status.HTTP_404_NOT_FOUND, 
             detail=f"Post with ID {post_id} not found."
         )    
+    
+    if post.author_id != current_user.user_id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail=f"Not authorized to perform requested action"
+        )
     
     post_query.update(body.model_dump())
     db.commit()
