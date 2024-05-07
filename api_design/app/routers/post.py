@@ -1,11 +1,10 @@
-from ..database import engine, get_db
+from ..database import get_db
 from .. import models
-from ..utils import hash
 from ..schemas import PostCreate, PostResponse
 from ..oauth2 import get_current_user
 
 from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
-from typing import List
+from typing import List, Optional
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 
@@ -21,13 +20,20 @@ def test_posts(db: Session = Depends(get_db)):
     return {"status": "success"}
 
 @router.get("/", response_model=List[PostResponse])
-async def get_posts(db: Session = Depends(get_db)):
+async def get_posts(db: Session = Depends(get_db), limit: int = None, offset: int = 0, search: Optional[str] = None):
     post_query = db.query(models.Post)
-    posts = post_query.all()
+    posts = (
+        post_query
+        .filter(models.Post.title.contains(search))
+        .limit(limit)
+        .offset(offset)
+        .all()
+    )
+
     return posts
 
 @router.get("/{post_id}", response_model=PostResponse)
-async def get_post(post_id: int, db: Session = Depends(get_db)):
+async def get_post(post_id: int, db: Session = Depends(get_db), current_user: int = Depends(get_current_user)):
     post_query = db.query(models.Post).filter(models.Post.id == post_id)
     post = post_query.first()
     print(post)
