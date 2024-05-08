@@ -20,7 +20,7 @@ def test_posts(db: Session = Depends(get_db)):
     return {"status": "success"}
 
 @router.get("/", response_model=List[PostResponse])
-async def get_posts(db: Session = Depends(get_db), limit: int = None, offset: int = 0, search: Optional[str] = None):
+async def get_posts(db: Session = Depends(get_db), limit: int = None, offset: int = 0, search: Optional[str] = ""):
     post_query = db.query(models.Post)
     posts = (
         post_query
