@@ -3,10 +3,9 @@ from .. import models
 from ..schemas import PostCreate, PostResponse
 from ..oauth2 import get_current_user
 
-from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
+from fastapi import Response, status, HTTPException, Depends, APIRouter
 from typing import List, Optional
 from sqlalchemy.orm import Session
-from sqlalchemy import func
 
 
 router = APIRouter(
