@@ -20,7 +20,7 @@ class UserResponse(BaseModel):
     created_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class UserLogin(BaseModel):
     email: str
@@ -34,17 +34,25 @@ class Post(BaseModel):
 class PostCreate(Post):
     pass
 
-class PostResponse(BaseModel):
+
+class PostRes(BaseModel):
     id: int
     title: str
     content: str
     published: bool
     created_at: datetime
-    author_id: int
+    author_id: int 
     author: UserResponse
 
     class Config:
-        orm_mode = True
+        from_attributes = True
+
+class PostResponse(BaseModel):
+    Post: PostRes
+    author_name: str
+
+    class Config:
+        from_attributes = True
 
 
 class Token(BaseModel):
