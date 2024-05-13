@@ -26,30 +26,26 @@ class UserLogin(BaseModel):
     email: str
     password: str
 
-class Post(BaseModel):
+class PostBase(BaseModel):
     title: str
     content: str
     published: bool = True
 
-class PostCreate(Post):
+class PostCreate(PostBase):
     pass
 
 
-class PostRes(BaseModel):
+class Post(PostBase):
     id: int
-    title: str
-    content: str
-    published: bool
     created_at: datetime
-    author_id: int 
-    author: UserResponse
+    # author_id: int 
 
     class Config:
         from_attributes = True
 
-class PostResponse(BaseModel):
-    Post: PostRes
+class PostResponse(Post):
     author_name: str
+    votes: int
 
     class Config:
         from_attributes = True

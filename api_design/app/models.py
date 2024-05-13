@@ -18,7 +18,7 @@ class Post(Base):
         server_default=text('now()')
     )
     author_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
-    author = relationship("User")
+    # author = relationship("User")
     
 class User(Base):
     __tablename__ = "users"
