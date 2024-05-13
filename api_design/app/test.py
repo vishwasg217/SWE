@@ -1,4 +1,4 @@
-# import os 
+# import os
 # import dotenv
 
 # dotenv.load_dotenv()
@@ -8,7 +8,6 @@
 # DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
 # DATABASE_PORT = os.getenv("DATABASE_PORT")
 # DATABASE_NAME = os.getenv("DATABASE_NAME")
-
 
 
 # SQLALCHEMY_DATABASE_URL = f"postgresql://{DATABASE_USERNAME}:{DATABASE_PASSWORD}@{DATABASE_HOSTNAME}/{DATABASE_NAME}"

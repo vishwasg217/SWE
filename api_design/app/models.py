@@ -11,15 +11,16 @@ class Post(Base):
     id = Column(Integer, primary_key=True, nullable=False)
     title = Column(String, nullable=False)
     content = Column(String, nullable=False)
-    published = Column(Boolean, server_default='TRUE', nullable=False)
+    published = Column(Boolean, server_default="TRUE", nullable=False)
     created_at = Column(
-        TIMESTAMP(timezone=True),
-        nullable=False, 
-        server_default=text('now()')
+        TIMESTAMP(timezone=True), nullable=False, server_default=text("now()")
     )
-    author_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    author_id = Column(
+        Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False
+    )
     # author = relationship("User")
-    
+
+
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, nullable=False)
@@ -28,21 +29,15 @@ class User(Base):
     last_name = Column(String, nullable=False)
     password = Column(String, nullable=False)
     created_at = Column(
-        TIMESTAMP(timezone=True),
-        nullable=False,
-        server_default=text('now()')
+        TIMESTAMP(timezone=True), nullable=False, server_default=text("now()")
     )
+
 
 class Vote(Base):
     __tablename__ = "votes"
     user_id = Column(
-        Integer, 
-        ForeignKey("users.id", ondelete="CASCADE"), 
-        primary_key=True
+        Integer, ForeignKey("users.id", ondelete="CASCADE"), primary_key=True
     )
     post_id = Column(
-        Integer, 
-        ForeignKey("posts.id", ondelete="CASCADE"), 
-        primary_key=True
+        Integer, ForeignKey("posts.id", ondelete="CASCADE"), primary_key=True
     )
-    

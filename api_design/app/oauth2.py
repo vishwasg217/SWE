@@ -11,7 +11,8 @@ SECRET_KEY = settings.secret_key
 ALGORITHM = settings.algorithm
 ACCESS_TOKEN_EXPIRE_MINUTES = settings.access_token_expire_minutes
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl='login')
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
+
 
 def create_access_token(data: dict):
     to_encode = data.copy()
@@ -30,8 +31,9 @@ def verify_token(token: str, credentials_exception):
         token_data = TokenData(user_id=id)
     except JWTError:
         raise credentials_exception
-    
+
     return token_data
+
 
 def get_current_user(token: str = Depends(oauth2_scheme)):
     credentials_exception = HTTPException(

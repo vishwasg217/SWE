@@ -7,12 +7,12 @@ try:
         host="localhost",
         database="api_design",
         user="postgres",
-        cursor_factory=RealDictCursor
+        cursor_factory=RealDictCursor,
     )
 
     cursor = connection.cursor()
     print("Connected to the database.")
-    
+
 except Exception as e:
     print(f"Error: {e}")
 
@@ -22,7 +22,7 @@ with open("data/the_office/posts.json", "r") as f:
 for post in posts:
     cursor.execute(
         "INSERT INTO posts (title, content, published) VALUES (%s, %s, %s) RETURNING *",
-        (post["title"], post["content"], post["published"])
+        (post["title"], post["content"], post["published"]),
     )
     inserted_post = cursor.fetchone()
     connection.commit()
