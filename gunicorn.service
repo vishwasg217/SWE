@@ -1,0 +1,14 @@
+[Unit]
+Description=demo API application
+After=network.target
+
+[Service]
+User=vishwas
+Group=vishwas
+WorkingDirectory=/home/vishwas/app/src/
+Environment="PATH=/home/vishwas/app/env/bin"
+EnvironmentFile=/home/vishwas/.env
+ExecStart=/home/vishwas/env/bin/gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --bind 0.0.0.0:8000
+
+[Install]
+WantedBy=multi-user.target
